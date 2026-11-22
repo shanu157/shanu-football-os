@@ -1,0 +1,9 @@
+{
+  "name": "Shanu Football OS",
+  "short_name": "Shanu OS",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07130f",
+  "theme_color": "#07130f",
+  "description": "Train hard, play smart, recover well."
+}
