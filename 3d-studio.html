@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#061b13">
+<title>3D Exercise Studio | Shanu Football OS</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="3d-studio.css">
+</head>
+<body>
+<main class="studio">
+<a href="index.html" class="back-link">← BACK TO FOOTBALL OS</a>
+<p class="eyebrow">SHANU FOOTBALL OS</p>
+<h1>3D Exercise Studio</h1>
+<p class="muted">Explore movement and muscle anatomy in 3D.</p>
+
+<nav class="studio-tabs">
+<button class="active" data-view="football">Footballer 3D</button>
+<button data-view="anatomy">Muscle Anatomy</button>
+</nav>
+
+<section class="viewer card">
+<div id="viewerLabel">FOOTBALL MOVEMENT MODEL</div>
+<div id="threeCanvas" aria-label="Interactive 3D model"></div>
+<div class="viewer-controls">
+<button id="rotateBtn">Pause rotation</button>
+<button id="resetBtn">Reset view</button>
+</div>
+<p id="studioStatus" role="status">Loading 3D viewer...</p>
+</section>
+
+<section class="card">
+<p class="eyebrow">MOVEMENT LIBRARY</p>
+<h2 id="movementTitle">Football movement</h2>
+<div class="movement-list">
+<button data-move="dribble">Dribbling</button>
+<button data-move="pass">Passing</button>
+<button data-move="sprint">Running posture</button>
+<button data-move="balance">Balance</button>
+</div>
+<p id="movementInfo">Choose a movement to explore.</p>
+</section>
+
+<section class="card">
+<p class="eyebrow">MODEL GUIDE</p>
+<h2>Explore the model</h2>
+<p>Drag to rotate. Use pinch gestures or mouse wheel to zoom. The demonstration model is a simple 3D educational figure, not a medical anatomy model.</p>
+</section>
+</main>
+<script type="module" src="3d-studio.js"></script>
+</body>
+</html>

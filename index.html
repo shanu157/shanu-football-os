@@ -46,7 +46,50 @@
       <div class="recommendation" id="recommendation" aria-live="polite"><span class="rec-icon">◎</span><div><b>Your plan appears here</b><p>Answer the check-in, then choose your plan.</p></div></div>
     </section>
 
-    <section class="sections">
+    
+<section class="card player-profile" id="playerProfile">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">PLAYER IDENTITY</p>
+      <h2>Player Profile</h2>
+    </div>
+    <span class="tag">MY JOURNEY</span>
+  </div>
+  <form id="profileForm">
+    <div class="readiness-grid">
+      <label class="field">Player name
+        <input id="playerName" type="text" maxlength="40" placeholder="Enter your name">
+      </label>
+      <label class="field">Position
+        <select id="playerPosition">
+          <option value="Winger">Winger</option>
+          <option value="Striker">Striker</option>
+          <option value="Midfielder">Midfielder</option>
+          <option value="Defender">Defender</option>
+          <option value="Goalkeeper">Goalkeeper</option>
+        </select>
+      </label>
+      <label class="field">Preferred foot
+        <select id="playerFoot">
+          <option value="Both feet">Both feet</option>
+          <option value="Right foot">Right foot</option>
+          <option value="Left foot">Left foot</option>
+        </select>
+      </label>
+      <label class="field">Main ambition
+        <input id="playerAmbition" value="Professional footballer" maxlength="60">
+      </label>
+    </div>
+    <button class="primary small" type="submit">SAVE PLAYER PROFILE</button>
+    <p id="profileStatus" class="status" aria-live="polite">Your profile has not been saved yet.</p>
+  </form>
+  <div class="mantra">
+    <span>YOUR POSITION</span>
+    <strong id="profileSummary">Winger • Both feet</strong>
+  </div>
+</section>
+
+<section class="sections">
       <div class="section-head"><div><p class="eyebrow">THREE TRAINING MODES</p><h2>Choose with intelligence.</h2></div><p class="muted">Your body sets the intensity.</p></div>
       <div class="mode-grid">
         <article class="mode-card growth">
@@ -73,6 +116,54 @@
       </div>
     </section>
 
+    
+<section class="card cloud-training" id="cloudTraining">
+  <p class="eyebrow">YOUR CLOUD ACCOUNT</p>
+  <h2>Training Log</h2>
+  <p id="cloudStatus" role="status">Connect your Google account to sync your training.</p>
+  <button type="button" id="googleLogin">Continue with Google</button>
+  <button type="button" id="googleLogout" hidden>Sign out</button>
+  <p id="cloudAccount"></p>
+
+  <div id="cloudLogArea" hidden>
+    <h3>Record a training session</h3>
+    <form id="cloudLogForm">
+      <label for="logDate">Training date</label>
+      <input id="logDate" type="date" required>
+
+      <label for="logActivity">Activity</label>
+      <select id="logActivity" required>
+        <option value="Football skills">Football skills</option>
+        <option value="Match">Match</option>
+        <option value="Strength">Strength</option>
+        <option value="Speed and agility">Speed and agility</option>
+        <option value="Mobility">Mobility</option>
+        <option value="Recovery">Recovery</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="logMinutes">Duration (minutes)</label>
+      <input id="logMinutes" type="number" min="1" max="300" required>
+
+      <label for="logNotes">Notes (optional)</label>
+      <textarea id="logNotes" rows="3" maxlength="500"
+        placeholder="What did you practise? How did it feel?"></textarea>
+
+      <button type="submit" id="saveCloudLog">Save training log</button>
+    </form>
+
+    <h3>Your training history</h3>
+    <div id="cloudLogList" aria-live="polite">Loading logs...</div>
+  </div>
+</section>
+
+
+    <section class="card session-library-entry" id="sessionLibraryLink">
+      <p class="eyebrow">EXPLORE YOUR TRAINING</p>
+      <h2>Session Library</h2>
+      <p class="muted">Explore animated exercise guides and track your practice.</p>
+      <a class="primary session-open" href="session-library.html">OPEN SESSION LIBRARY →</a>
+    </section>
     <section class="detail card" id="detailPanel">
       <div class="section-head"><div><p class="eyebrow">SESSION LIBRARY</p><h2 id="detailTitle">Your exercise menu</h2></div><span class="tag" id="detailTag">SELECT A MODE</span></div>
       <div id="exerciseList" class="exercise-list"><p class="muted">Select one of the three modes above to see its routine, coaching cues and safe modifications.</p></div>

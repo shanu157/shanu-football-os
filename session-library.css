@@ -1,0 +1,30 @@
+/* SESSION LIBRARY */
+.library-page { width:min(950px,92%); margin:30px auto 60px; display:grid; gap:22px; }
+.library-page h1 { font-size:clamp(2.2rem,7vw,4rem); margin:8px 0; }
+.back-link,.library-footer a { color:var(--accent,#c5f36b); text-decoration:none; }
+.category-tabs { display:flex; flex-wrap:wrap; gap:10px; }
+.category-tabs button { padding:12px 15px; border-radius:12px; cursor:pointer; }
+.category-tabs button.active { background:var(--accent,#c5f36b); color:#092015; }
+.progress-heading { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+.library-progress .progress { margin:12px 0; }
+.exercise-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr)); gap:15px; }
+.exercise-card { border:1px solid var(--border,#244638); border-radius:18px; padding:18px; background:rgba(4,25,18,.75); }
+.exercise-card h3 { margin:10px 0 6px; }
+.exercise-card p { color:var(--muted,#9aafa4); line-height:1.55; }
+.exercise-meta { color:var(--accent,#c5f36b); font-size:12px; font-weight:700; letter-spacing:.7px; }
+.exercise-check { display:flex; align-items:center; gap:10px; margin-top:16px; padding-top:12px; border-top:1px solid var(--border,#244638); }
+.exercise-check input { width:20px; height:20px; accent-color:#b8f34a; }
+.motion-stage { height:135px; border-radius:13px; display:grid; place-items:center; overflow:hidden; background:radial-gradient(circle,#164a35,#061a13 70%); }
+.motion-emoji { font-size:64px; filter:drop-shadow(0 0 15px rgba(166,255,98,.45)); animation:exerciseFloat 2s ease-in-out infinite; }
+.motion-stage[data-motion="run"] .motion-emoji { animation:exerciseRun .7s ease-in-out infinite alternate; }
+.motion-stage[data-motion="ball"] .motion-emoji { animation:exerciseBall 1.4s ease-in-out infinite; }
+.motion-stage[data-motion="stretch"] .motion-emoji { animation:exerciseStretch 2s ease-in-out infinite alternate; }
+.motion-stage[data-motion="strength"] .motion-emoji { animation:exerciseStrength 1.5s ease-in-out infinite alternate; }
+@keyframes exerciseFloat { 50% { transform:translateY(-9px) rotate(5deg); } }
+@keyframes exerciseRun { to { transform:translate(12px,-7px) rotate(12deg); } }
+@keyframes exerciseBall { 50% { transform:translateX(24px) rotate(35deg); } }
+@keyframes exerciseStretch { to { transform:scale(1.12) rotate(-8deg); } }
+@keyframes exerciseStrength { to { transform:translateY(-10px) scale(1.08); } }
+.library-footer { padding:22px 0; }
+.session-open { display:inline-block; text-decoration:none; padding:14px 18px; border-radius:12px; }
+@media(max-width:560px) { .library-page { margin-top:20px; } .category-tabs button { flex:1 1 100%; } }

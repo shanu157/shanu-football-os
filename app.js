@@ -75,3 +75,258 @@ let lastReminder='';
 setInterval(()=>{const v=JSON.parse(localStorage.getItem(REM)||'{}');if(!v.on)return;const now=new Date(),hm=now.toTimeString().slice(0,5),key=now.toDateString()+hm;if(hm===v.time&&lastReminder!==key){lastReminder=key;const msg='Shanu: check your recovery, hydrate and prepare calmly for tomorrow.';if('Notification'in window&&Notification.permission==='granted')new Notification('Shanu Football OS',{body:msg});else alert(msg)}},20000);
 $('#closeDialog').addEventListener('click',()=>$('#infoDialog').close());
 if('serviceWorker'in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+
+
+// PLAYER PROFILE OS
+const profileForm = document.getElementById('profileForm');
+
+if (profileForm) {
+  const fields = {
+    name: document.getElementById('playerName'),
+    position: document.getElementById('playerPosition'),
+    foot: document.getElementById('playerFoot'),
+    ambition: document.getElementById('playerAmbition')
+  };
+
+  const status = document.getElementById('profileStatus');
+  const summary = document.getElementById('profileSummary');
+
+  function updateSummary() {
+    summary.textContent = `${fields.position.value} • ${fields.foot.value}`;
+  }
+
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem('shanu-player-profile') || 'null'
+    );
+
+    if (saved) {
+      fields.name.value = saved.name || '';
+      fields.position.value = saved.position || 'Winger';
+      fields.foot.value = saved.foot || 'Both feet';
+      fields.ambition.value = saved.ambition || 'Professional footballer';
+      status.textContent = 'Saved profile loaded.';
+    }
+  } catch {
+    status.textContent = 'Could not load saved profile.';
+  }
+
+  updateSummary();
+
+  profileForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const profile = {
+      name: fields.name.value.trim(),
+      position: fields.position.value,
+      foot: fields.foot.value,
+      ambition: fields.ambition.value.trim()
+    };
+
+    try {
+      localStorage.setItem('shanu-player-profile', JSON.stringify(profile));
+      updateSummary();
+      status.textContent = 'Player profile saved successfully.';
+    } catch {
+      status.textContent = 'Could not save. Check browser storage.';
+    }
+  });
+
+  fields.position.addEventListener('change', updateSummary);
+  fields.foot.addEventListener('change', updateSummary);
+}
+
+
+// FIREBASE CLOUD TRAINING
+(async function initFirebaseCloudTraining() {
+  const status = document.getElementById('cloudStatus');
+  const login = document.getElementById('googleLogin');
+  const logout = document.getElementById('googleLogout');
+  const account = document.getElementById('cloudAccount');
+  const area = document.getElementById('cloudLogArea');
+  const form = document.getElementById('cloudLogForm');
+  const list = document.getElementById('cloudLogList');
+
+  if (!status || !login || !form || !list) return;
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAXrVX1iW1xwGvEJ7yVovmkrXrs0Xq6MEU",
+    authDomain: "shanu-football-os.firebaseapp.com",
+    projectId: "shanu-football-os",
+    storageBucket: "shanu-football-os.firebasestorage.app",
+    messagingSenderId: "733802067399",
+    appId: "1:733802067399:web:d72c5f5b3cc861c7cc15e2",
+    measurementId: "G-H8HG7JBXBV"
+  };
+
+  let unsubscribeLogs = null;
+  let currentUser = null;
+
+  try {
+    const appSdk = await import(
+      'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js'
+    );
+    const authSdk = await import(
+      'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js'
+    );
+    const dbSdk = await import(
+      'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js'
+    );
+
+    const app = appSdk.initializeApp(firebaseConfig);
+    const auth = authSdk.getAuth(app);
+    const db = dbSdk.getFirestore(app);
+    const provider = new authSdk.GoogleAuthProvider();
+
+    login.addEventListener('click', async () => {
+      try {
+        status.textContent = 'Opening Google sign-in...';
+        await authSdk.signInWithPopup(auth, provider);
+      } catch (error) {
+        console.error(error);
+        status.textContent = 'Google sign-in failed: ' + error.message;
+      }
+    });
+
+    logout.addEventListener('click', async () => {
+      try {
+        await authSdk.signOut(auth);
+      } catch (error) {
+        status.textContent = 'Sign-out failed: ' + error.message;
+      }
+    });
+
+    authSdk.onAuthStateChanged(auth, (user) => {
+      currentUser = user;
+
+      if (unsubscribeLogs) {
+        unsubscribeLogs();
+        unsubscribeLogs = null;
+      }
+
+      if (!user) {
+        login.hidden = false;
+        logout.hidden = true;
+        area.hidden = true;
+        account.textContent = '';
+        list.replaceChildren();
+        status.textContent = 'Sign in with Google to access your cloud training log.';
+        return;
+      }
+
+      login.hidden = true;
+      logout.hidden = false;
+      area.hidden = false;
+      account.textContent = 'Signed in: ' + (user.email || 'Google account');
+      status.textContent = 'Connected. Your training logs sync automatically.';
+
+      const logsRef = dbSdk.collection(
+        db, 'users', user.uid, 'trainingLogs'
+      );
+      const logsQuery = dbSdk.query(
+        logsRef,
+        dbSdk.orderBy('createdAt', 'desc')
+      );
+
+      unsubscribeLogs = dbSdk.onSnapshot(logsQuery, (snapshot) => {
+        list.replaceChildren();
+
+        if (snapshot.empty) {
+          list.textContent = 'No training logs yet. Add your first session above.';
+          return;
+        }
+
+        snapshot.forEach((documentSnapshot) => {
+          const data = documentSnapshot.data();
+          const card = document.createElement('article');
+          card.className = 'cloud-log-item';
+
+          const heading = document.createElement('h4');
+          heading.textContent = data.activity || 'Training';
+
+          const details = document.createElement('p');
+          details.textContent =
+            `${data.date || ''} • ${data.minutes || 0} minutes`;
+
+          const notes = document.createElement('p');
+          notes.textContent = data.notes || '';
+
+          const remove = document.createElement('button');
+          remove.type = 'button';
+          remove.textContent = 'Delete log';
+          remove.addEventListener('click', async () => {
+            if (!currentUser || currentUser.uid !== user.uid) return;
+            if (!confirm('Delete this training log?')) return;
+
+            try {
+              await dbSdk.deleteDoc(
+                dbSdk.doc(db, 'users', user.uid, 'trainingLogs',
+                  documentSnapshot.id)
+              );
+            } catch (error) {
+              status.textContent = 'Could not delete log: ' + error.message;
+            }
+          });
+
+          card.append(heading, details);
+          if (data.notes) card.append(notes);
+          card.append(remove);
+          list.append(card);
+        });
+      }, (error) => {
+        console.error(error);
+        status.textContent = 'Could not load logs: ' + error.message;
+      });
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      if (!currentUser) {
+        status.textContent = 'Please sign in first.';
+        return;
+      }
+
+      const user = currentUser;
+      const saveButton = document.getElementById('saveCloudLog');
+      saveButton.disabled = true;
+
+      try {
+        const minutes = Number(document.getElementById('logMinutes').value);
+
+        if (!Number.isInteger(minutes) || minutes < 1 || minutes > 300) {
+          throw new Error('Enter a duration from 1 to 300 minutes.');
+        }
+
+        await dbSdk.addDoc(
+          dbSdk.collection(db, 'users', user.uid, 'trainingLogs'),
+          {
+            date: document.getElementById('logDate').value,
+            activity: document.getElementById('logActivity').value,
+            minutes,
+            notes: document.getElementById('logNotes').value.trim(),
+            createdAt: dbSdk.serverTimestamp()
+          }
+        );
+
+        form.reset();
+        document.getElementById('logDate').value =
+          new Date().toLocaleDateString('en-CA');
+        status.textContent = 'Training log saved to your cloud account!';
+      } catch (error) {
+        console.error(error);
+        status.textContent = 'Could not save: ' + error.message;
+      } finally {
+        saveButton.disabled = false;
+      }
+    });
+
+    document.getElementById('logDate').value =
+      new Date().toLocaleDateString('en-CA');
+
+  } catch (error) {
+    console.error('Firebase setup error:', error);
+    status.textContent =
+      'Firebase could not start. Check your connection and browser console.';
+  }
+})();
