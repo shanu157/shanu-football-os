@@ -4,46 +4,130 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#061b13">
-<title>Session Library | Shanu Football OS</title>
+<title>Workout Studio | Shanu Football OS</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="session-library.css">
-  <link rel="stylesheet" href="premium.css">
+<link rel="stylesheet" href="premium.css">
 </head>
 <body>
-<main class="library-page">
-<a class="back-link" href="index.html">← BACK TO HOME</a>
-<p class="eyebrow">SHANU FOOTBALL OS</p>
-<h1>Session Library</h1>
-<p class="muted">Learn the movement. Practise with control. Track your progress.</p>
+<main class="workout-page">
 
-<div class="library-progress card">
-  <div class="progress-heading">
-    <strong>Your exercise checklist</strong>
-    <span id="progressText">0 / 9 completed</span>
+<header class="workout-header">
+  <a class="back-link" href="index.html">← BACK TO HOME</a>
+  <div>
+    <p class="eyebrow">SHANU FOOTBALL OS / TRAINING</p>
+    <h1>Workout <span>Studio</span></h1>
+    <p class="muted">Explore movements. Learn technique. Train with control.</p>
   </div>
-  <div class="progress"><span id="progressBar"></span></div>
-  <button id="resetChecklist" class="text-btn">Reset checklist</button>
-</div>
+</header>
 
-<nav class="category-tabs" aria-label="Exercise categories">
-  <button class="active" data-category="football">⚽ Football skills</button>
-  <button data-category="strength">💪 Strength</button>
-  <button data-category="mobility">🧘 Mobility</button>
-</nav>
+<section id="overviewScreen">
+  <nav class="category-tabs" aria-label="Workout categories">
+    <button class="active" data-category="football">⚽ Football</button>
+    <button data-category="strength">💪 Strength</button>
+    <button data-category="mobility">🧘 Mobility</button>
+  </nav>
 
-<section>
-  <p class="eyebrow" id="categoryEyebrow">BALL CONTROL & TECHNIQUE</p>
-  <h2 id="categoryTitle">Football skills</h2>
-  <p class="muted" id="categoryDescription">Build confident control and accurate technique.</p>
-  <div id="exerciseCards" class="exercise-grid"></div>
+  <section class="workout-hero">
+    <div class="hero-art" id="heroArt">
+      <span class="hero-orbit orbit-one"></span>
+      <span class="hero-orbit orbit-two"></span>
+      <span class="hero-emoji" id="heroEmoji">⚽</span>
+      <span class="hero-tag">SHANU TRAINING</span>
+    </div>
+    <div class="hero-content">
+      <p class="eyebrow" id="categoryEyebrow">BALL CONTROL & TECHNIQUE</p>
+      <h2 id="categoryTitle">Football Skills</h2>
+      <p id="categoryDescription">Build confident control and accurate technique.</p>
+      <div class="workout-stats">
+        <div><span>◈</span><strong id="difficultyText">Beginner</strong><small>LEVEL</small></div>
+        <div><span>◷</span><strong id="durationText">24 min</strong><small>ESTIMATED</small></div>
+        <div><span>♧</span><strong id="exerciseCount">3</strong><small>EXERCISES</small></div>
+      </div>
+      <div class="hero-actions">
+        <button class="start-button" id="startWorkout">▶ Start workout</button>
+        <button class="settings-button" id="openSettings" aria-label="Workout settings">⚙</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="exercise-section">
+    <div class="section-title">
+      <div>
+        <p class="eyebrow">YOUR MOVEMENT PLAN</p>
+        <h2>Exercises</h2>
+      </div>
+      <span class="exercise-count-pill" id="listCount">03 MOVEMENTS</span>
+    </div>
+    <div class="library-progress">
+      <div class="progress-heading">
+        <strong>Your exercise checklist</strong>
+        <span id="progressText">0 / 9 completed</span>
+      </div>
+      <div class="progress"><span id="progressBar"></span></div>
+      <button id="resetChecklist" class="text-btn">Reset checklist</button>
+    </div>
+    <div id="exerciseCards" class="exercise-list"></div>
+  </section>
+</section>
+
+<section id="playerScreen" class="player-screen" hidden>
+  <button class="back-link player-back" id="backToOverview">← BACK TO WORKOUT</button>
+  <div class="player-cover">
+    <div class="player-figure" id="playerEmoji">⚽</div>
+    <span class="player-label">WORKOUT IN PROGRESS</span>
+  </div>
+  <div class="player-content">
+    <div class="player-progress-heading">
+      <span id="playerStep">EXERCISE 1 OF 3</span>
+      <span id="playerPercent">0%</span>
+    </div>
+    <div class="player-progress"><span id="playerProgressBar"></span></div>
+    <p class="eyebrow">CURRENT EXERCISE</p>
+    <h2 id="playerTitle">Ball mastery</h2>
+    <p id="playerDescription" class="muted"></p>
+    <div class="timer-display" id="timerDisplay">00:45</div>
+    <p class="timer-caption">OPTIONAL PRACTICE INTERVAL</p>
+    <div class="player-controls">
+      <button class="secondary-control" id="previousExercise">← Previous</button>
+      <button class="play-control" id="playPause">▶ Start</button>
+      <button class="secondary-control" id="nextExercise">Next →</button>
+    </div>
+    <p class="player-note">Use a comfortable pace. You can pause, skip or finish whenever you need.</p>
+  </div>
 </section>
 
 <footer class="library-footer">
   <a href="3d-studio.html">OPEN 3D EXERCISE STUDIO →</a>
-  <p class="muted">Use coach guidance and choose a suitable workload. Rest when needed.</p>
+  <p class="muted">Quality movement matters more than speed. Rest whenever needed.</p>
 </footer>
 </main>
+
+<div class="modal-backdrop" id="settingsModal" hidden>
+  <section class="settings-panel" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="modal-heading">
+      <h2 id="settingsTitle">Workout Settings</h2>
+      <button id="closeSettings" aria-label="Close settings">✕</button>
+    </div>
+    <h3>Choose coach style</h3>
+    <div class="coach-options">
+      <button class="coach-option" data-coach="real">
+        <span class="coach-art real-art">👨‍🏫</span>
+        <strong>Real Coach</strong>
+        <small>Video-ready mode</small>
+      </button>
+      <button class="coach-option selected" data-coach="animated">
+        <span class="coach-art animated-art">🤖</span>
+        <strong>Animated Coach</strong>
+        <small>Illustrated mode</small>
+      </button>
+    </div>
+    <p class="coach-note">Coach videos and animations can be added in a later upgrade. These settings currently change the display style.</p>
+    <button class="save-settings" id="saveSettings">Save settings</button>
+  </section>
+</div>
+
 <script src="session-library.js"></script>
-  <script src="premium.js"></script>
+<script src="premium.js"></script>
 </body>
 </html>
