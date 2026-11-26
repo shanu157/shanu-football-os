@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Training Log | Shanu Football OS</title>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="premium.css">
+</head><body>
+<header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">S</span><span>SHANU <b>FOOTBALL OS</b></span></a></header>
+<main class="premium-page">
+<p class="eyebrow">PERFORMANCE TRACKING / 03</p>
+<h1 class="premium-heading">TRAINING <span>LOG</span></h1>
+<p class="premium-sub">Record your sessions and review your consistency.</p>
+<section class="card" style="padding:25px;margin-top:25px">
+<h2>Record a session</h2>
+<form id="logForm">
+<label class="field">Date<input type="date" id="date" required></label><br>
+<label class="field">Session<select id="type"><option>Football practice</option><option>Technical skills</option><option>Speed and agility</option><option>Strength and mobility</option><option>Match</option><option>Recovery</option></select></label><br>
+<label class="field">Duration (minutes)<input type="number" id="duration" min="1" max="600" required></label><br>
+<label class="field">Notes<textarea id="notes" maxlength="300" placeholder="What did you work on?"></textarea></label><br>
+<button class="primary" type="submit">SAVE SESSION</button>
+</form>
+</section>
+<section style="margin-top:30px">
+<h2>Session history</h2>
+<div id="history" class="premium-grid"></div>
+<button id="clear" class="outline" style="margin-top:20px">CLEAR HISTORY</button>
+</section>
+</main>
+<script src="premium.js"></script>
+<script>
+const key='shanu_training_log_v1';
+const $=id=>document.getElementById(id);
+$('date').value=new Date().toLocaleDateString('en-CA');
+function render(){
+ let items=JSON.parse(localStorage.getItem(key)||'[]');
+ $('history').replaceChildren();
+ if(!items.length){$('history').textContent='No sessions recorded yet.';return}
+ items.slice().reverse().forEach(item=>{
+  const card=document.createElement('article');
+  card.className='premium-tile';
+  const title=document.createElement('h3');title.textContent=item.type;
+  const date=document.createElement('p');date.textContent=item.date+' • '+item.duration+' minutes';
+  const notes=document.createElement('p');notes.textContent=item.notes||'No notes';
+  card.append(title,date,notes);$('history').append(card);
+ });
+}
+$('logForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const items=JSON.parse(localStorage.getItem(key)||'[]');
+ items.push({date:$('date').value,type:$('type').value,duration:Number($('duration').value),notes:$('notes').value});
+ localStorage.setItem(key,JSON.stringify(items));
+ $('logForm').reset();$('date').value=new Date().toLocaleDateString('en-CA');render();
+});
+$('clear').addEventListener('click',()=>{
+ if(confirm('Clear all locally saved training sessions?')){localStorage.removeItem(key);render()}
+});
+render();
+</script>
+</body></html>

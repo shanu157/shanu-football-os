@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Player Profile | Shanu Football OS</title>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="premium.css">
+</head><body>
+<header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">S</span><span>SHANU <b>FOOTBALL OS</b></span></a></header>
+<main class="premium-page">
+<p class="eyebrow">PLAYER IDENTITY / 02</p>
+<h1 class="premium-heading">PLAYER <span>PROFILE</span></h1>
+<p class="premium-sub">Your football journey starts with your identity.</p>
+<section class="card" style="padding:25px;margin-top:25px">
+<h2>Personal information</h2>
+<form id="playerForm">
+<label class="field">Player name<input id="name" maxlength="40" required></label><br>
+<label class="field">Position<select id="position"><option>Winger</option><option>Striker</option><option>Midfielder</option><option>Defender</option><option>Goalkeeper</option></select></label><br>
+<label class="field">Preferred foot<select id="foot"><option>Both feet</option><option>Right foot</option><option>Left foot</option></select></label><br>
+<label class="field">Football ambition<input id="ambition" maxlength="80" value="Professional footballer"></label><br>
+<button class="primary" type="submit">SAVE PLAYER PROFILE</button>
+<p id="status" class="premium-sub" aria-live="polite"></p>
+</form>
+</section>
+</main>
+<script src="premium.js"></script>
+<script>
+const fields=['name','position','foot','ambition'];
+const key='shanu_player_profile_v1';
+try {
+ const saved=JSON.parse(localStorage.getItem(key)||'{}');
+ fields.forEach(id=>{if(saved[id])document.getElementById(id).value=saved[id]});
+} catch(e){}
+document.getElementById('playerForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const data={};
+ fields.forEach(id=>data[id]=document.getElementById(id).value);
+ localStorage.setItem(key,JSON.stringify(data));
+ document.getElementById('status').textContent='Profile saved on this device.';
+});
+</script>
+</body></html>

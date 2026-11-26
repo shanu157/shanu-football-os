@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recovery Center | Shanu Football OS</title>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="premium.css">
+</head><body>
+<header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">S</span><span>SHANU <b>FOOTBALL OS</b></span></a></header>
+<main class="premium-page">
+<p class="eyebrow">WELLNESS AND READINESS / 04</p>
+<h1 class="premium-heading">RECOVERY <span>CENTER</span></h1>
+<p class="premium-sub">Rest is part of becoming a better footballer. Listen to your body.</p>
+<div class="premium-grid">
+<article class="premium-tile"><div class="tile-icon">🌙</div><h3>Sleep</h3><p>Keep a regular sleep routine. Teenagers generally need 8–10 hours.</p></article>
+<article class="premium-tile"><div class="tile-icon">💧</div><h3>Hydration</h3><p>Drink water regularly, including around football sessions.</p></article>
+<article class="premium-tile"><div class="tile-icon">🥗</div><h3>Nutrition</h3><p>Eat balanced meals with enough energy to support training and growth.</p></article>
+<article class="premium-tile"><div class="tile-icon">🧘</div><h3>Mobility</h3><p>Choose comfortable, gentle mobility work. Avoid movements that cause pain.</p></article>
+</div>
+<section class="card" style="padding:25px;margin-top:28px">
+<h2>Daily recovery checklist</h2>
+<div id="habits" style="display:grid;gap:18px;margin-top:20px">
+<label><input type="checkbox" data-habit="sleep"> Consistent sleep routine</label>
+<label><input type="checkbox" data-habit="water"> Regular hydration</label>
+<label><input type="checkbox" data-habit="food"> Balanced meals</label>
+<label><input type="checkbox" data-habit="rest"> Enough rest between sessions</label>
+<label><input type="checkbox" data-habit="check"> Checked how my body feels</label>
+</div>
+<p id="progress" class="premium-sub"></p>
+</section>
+</main>
+<script src="premium.js"></script>
+<script>
+const key='shanu_recovery_v1';
+let saved={};
+try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+const boxes=[...document.querySelectorAll('[data-habit]')];
+function update(){
+ const count=boxes.filter(b=>b.checked).length;
+ document.getElementById('progress').textContent=count+' of '+boxes.length+' habits completed today.';
+ localStorage.setItem(key,JSON.stringify(Object.fromEntries(boxes.map(b=>[b.dataset.habit,b.checked]))));
+}
+boxes.forEach(b=>{b.checked=!!saved[b.dataset.habit];b.addEventListener('change',update)});
+update();
+</script>
+</body></html>
