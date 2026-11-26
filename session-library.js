@@ -200,4 +200,3 @@ $("restReset").addEventListener("click",()=>{stopRest();restValue=30;showRest();
 document.querySelectorAll("[data-category]").forEach(b=>b.classList.toggle("active",b.dataset.category===category));
 $("sessionLabel").textContent=library[category].title;
 renderCards();selectExercise(0);
-</script>
