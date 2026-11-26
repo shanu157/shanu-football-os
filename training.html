@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080b09">
-<title>Training Center | Shanu Football OS</title>
+<title>Training Centre | Shanu Football OS</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="premium.css">
+<link rel="stylesheet" href="training-center.css">
 </head>
 <body>
 <div class="ambient"></div>
@@ -17,59 +18,112 @@
 </a>
 </header>
 
-<main class="premium-page">
+<main class="tc-wrap">
+<section class="tc-hero">
 <p class="eyebrow">PLAYER DEVELOPMENT SYSTEM / 01</p>
-<h1 class="premium-heading">ELITE<br><span>TRAINING CENTER</span></h1>
-<p class="premium-sub">
-Develop your football fundamentals with intelligent,
-age-appropriate training, technical practice and recovery.
-</p>
+<p class="tc-kicker">YOUR PERSONAL FOOTBALL WORKSPACE</p>
+<h1>BUILD YOUR<br><span>TRAINING PLAN.</span></h1>
+<p class="tc-intro">Choose your focus, create a session and practise with clear demonstrations.</p>
+<div class="tc-hero-actions">
+<a class="tc-primary" href="#builder">CREATE WORKOUT ↗</a>
+<a class="tc-secondary" href="session-library.html">EXPLORE EXERCISES</a>
+</div>
+</section>
 
-<div class="premium-grid">
-<a class="premium-tile" href="session-library.html">
-<div class="tile-icon">⚽</div>
-<h3>Session Library</h3>
-<p>Explore football sessions and technical exercises.</p>
-<small>EXPLORE SESSIONS ↗</small>
+<section class="tc-stats">
+<div><strong>06</strong><span>TRAINING FOCUSES</span></div>
+<div><strong>02</strong><span>WORKOUT MODES</span></div>
+<div><strong>∞</strong><span>YOUR PROGRESS</span></div>
+</section>
+
+<section class="tc-section" id="builder">
+<div class="tc-heading">
+<p class="eyebrow">CUSTOM SESSION BUILDER</p>
+<h2>Build your workout</h2>
+<p>Choose a focus and a comfortable session length.</p>
+</div>
+
+<div class="tc-builder">
+<label>TRAINING FOCUS
+<select id="tcFocus">
+<option value="football">Football technique</option>
+<option value="dribbling">Dribbling & ball mastery</option>
+<option value="passing">Passing & first touch</option>
+<option value="strength">Strength & coordination</option>
+<option value="mobility">Mobility & recovery</option>
+<option value="speed">Movement & agility</option>
+</select>
+</label>
+
+<label>SESSION LENGTH
+<select id="tcDuration">
+<option value="10">10 minutes</option>
+<option value="15" selected>15 minutes</option>
+<option value="20">20 minutes</option>
+<option value="30">30 minutes</option>
+</select>
+</label>
+
+<label>EXPERIENCE
+<select id="tcLevel">
+<option value="beginner">Beginner</option>
+<option value="comfortable">Comfortable</option>
+</select>
+</label>
+
+<button id="tcCreate" class="tc-primary tc-create">BUILD MY SESSION →</button>
+<div id="tcPlanPreview" class="tc-preview" aria-live="polite">
+<div class="tc-preview-icon">⚽</div>
+<strong>Your session will appear here</strong>
+<p>Select your options and build a workout.</p>
+</div>
+</div>
+</section>
+
+<section class="tc-section">
+<div class="tc-heading">
+<p class="eyebrow">TRAINING MODULES</p>
+<h2>Choose your pathway</h2>
+</div>
+<div class="tc-modules">
+<a href="session-library.html?focus=dribbling" class="tc-module">
+<span>01 / TECHNIQUE</span><b>⚽</b><h3>Ball mastery</h3>
+<p>Close control, touches and confident movement.</p><small>OPEN MODULE ↗</small>
 </a>
-
-<a class="premium-tile" href="3d-studio.html">
-<div class="tile-icon">🎮</div>
-<h3>3D Football Studio</h3>
-<p>Explore interactive football movement animations.</p>
-<small>OPEN 3D STUDIO ↗</small>
+<a href="session-library.html?focus=passing" class="tc-module">
+<span>02 / TECHNIQUE</span><b>🎯</b><h3>Passing & first touch</h3>
+<p>Improve receiving, control and passing accuracy.</p><small>OPEN MODULE ↗</small>
 </a>
-
-<a class="premium-tile" href="player.html">
-<div class="tile-icon">🏆</div>
-<h3>Player Development</h3>
-<p>Track your football journey and personal goals.</p>
-<small>VIEW PLAYER ↗</small>
+<a href="session-library.html?focus=speed" class="tc-module">
+<span>03 / MOVEMENT</span><b>🏃</b><h3>Movement & agility</h3>
+<p>Practise balanced, controlled changes of direction.</p><small>OPEN MODULE ↗</small>
 </a>
-
-<a class="premium-tile" href="training-log.html">
-<div class="tile-icon">📊</div>
-<h3>Training Log</h3>
-<p>Review your training history and progress.</p>
-<small>VIEW LOG ↗</small>
+<a href="session-library.html?focus=strength" class="tc-module">
+<span>04 / ATHLETICISM</span><b>💪</b><h3>Strength & coordination</h3>
+<p>Build basic movement control with comfortable technique.</p><small>OPEN MODULE ↗</small>
 </a>
-
-<a class="premium-tile" href="recovery.html">
-<div class="tile-icon">♻️</div>
-<h3>Recovery Center</h3>
-<p>Build consistent rest and recovery habits.</p>
-<small>OPEN RECOVERY ↗</small>
+<a href="session-library.html?focus=mobility" class="tc-module">
+<span>05 / RECOVERY</span><b>🌿</b><h3>Mobility & recovery</h3>
+<p>Gentle movement and a balanced recovery routine.</p><small>OPEN MODULE ↗</small>
 </a>
-
-<a class="premium-tile" href="index.html">
-<div class="tile-icon">◈</div>
-<h3>Main Dashboard</h3>
-<p>Return to your daily football dashboard.</p>
-<small>GO TO DASHBOARD ↗</small>
+<a href="3d-studio.html" class="tc-module">
+<span>06 / INTERACTIVE</span><b>🎮</b><h3>3D Football Studio</h3>
+<p>Explore the existing interactive movement studio.</p><small>OPEN STUDIO ↗</small>
 </a>
 </div>
-</main>
+</section>
 
+<section class="tc-section tc-bottom">
+<p class="eyebrow">YOUR DEVELOPMENT</p>
+<h2>Train with purpose.<br><span>Progress with consistency.</span></h2>
+<div class="tc-bottom-links">
+<a href="player.html">PLAYER PROFILE ↗</a>
+<a href="training-log.html">TRAINING LOG ↗</a>
+<a href="recovery.html">RECOVERY ↗</a>
+</div>
+</section>
+</main>
+<script src="training-center.js"></script>
 <script src="premium.js"></script>
 </body>
 </html>

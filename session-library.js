@@ -1,278 +1,203 @@
-const exercises = {
- football: {
-  eyebrow:"BALL CONTROL & TECHNIQUE",
-  title:"Football Skills",
-  description:"Build confident control and accurate technique.",
-  emoji:"⚽",
-  level:"Beginner",
-  duration:"24 min",
+const VIDEO={
+ ball:"https://players.brightcove.net/5561472251001/default_default/index.html?videoId=6352097874112",
+ running:"https://players.brightcove.net/5561472251001/default_default/index.html?videoId=6352096939112",
+ dribbling:"https://players.brightcove.net/5561472251001/default_default/index.html?videoId=6352096419112",
+ first:"https://players.brightcove.net/5561472251001/default_default/index.html?videoId=6352096238112"
+};
+
+const officialLinks={
+ ball:"https://footballaustralia.com.au/video/core-skills-ball-mastery",
+ running:"https://footballaustralia.com.au/video/core-skills-running-ball",
+ dribbling:"https://footballaustralia.com.au/video/core-skills-dribbling",
+ first:"https://footballaustralia.com.au/video/core-skills-first-touch"
+};
+
+const library={
+ football:{
+  eyebrow:"BALL CONTROL & TECHNIQUE",title:"Football skills",
   items:[
-   ["Ball mastery","⚽","ball","8–12 min","Easy","Practise toe taps, inside touches and gentle sole rolls. Keep the ball close."],
-   ["Passing & first touch","👟","float","8–12 min","Easy","Pass against a wall or with a partner. Receive calmly and look up before passing."],
-   ["Dribbling","🏃","run","8–12 min","Easy–moderate","Use a few cones or markers. Change direction with control and use both feet."]
+   {id:"ball",name:"Ball mastery",meta:"TECHNIQUE · 5 MIN",duration:30,reps:20,video:VIDEO.ball,source:officialLinks.ball,description:"Practise gentle, controlled touches with both feet. Keep the ball close and work at a comfortable pace.",cues:["Stay balanced and relaxed.","Use both feet.","Keep touches controlled."],mistakes:"Avoid rushing or looking down continuously."},
+   {id:"running",name:"Running with the ball",meta:"BALL CARRYING · 5 MIN",duration:30,reps:10,video:VIDEO.running,source:officialLinks.running,description:"Move into open space while keeping the ball within comfortable playing distance.",cues:["Look up between touches.","Use space in front of you.","Keep the ball under control."],mistakes:"Do not kick the ball too far ahead."},
+   {id:"dribbling",name:"Dribbling",meta:"CONTROL · 5 MIN",duration:30,reps:10,video:VIDEO.dribbling,source:officialLinks.dribbling,description:"Practise changing direction around a few safe markers with controlled touches.",cues:["Use inside and outside of both feet.","Change direction smoothly.","Leave enough space around you."],mistakes:"Avoid sharp turns at a speed you cannot control."},
+   {id:"first",name:"First touch",meta:"RECEIVING · 5 MIN",duration:30,reps:10,video:VIDEO.first,source:officialLinks.first,description:"Receive a gentle pass and guide the ball into space for your next action.",cues:["Watch the ball arrive.","Relax the receiving foot.","Move the ball into useful space."],mistakes:"Avoid letting the ball get too far away."}
   ]
  },
  strength:{
-  eyebrow:"CONTROL & COORDINATION",
-  title:"Strength & Athleticism",
-  description:"Build basic movement control with comfortable technique.",
-  emoji:"💪",
-  level:"Beginner",
-  duration:"10–15 min",
+  eyebrow:"CONTROL & COORDINATION",title:"Strength & coordination",
   items:[
-   ["Glute bridge","🧍","strength","2 sets · 8 reps","Easy","Lie comfortably, bend knees and lift hips gently. Stop if uncomfortable."],
-   ["Bird dog","🐕","float","2 sets · 6 each side","Easy","From hands and knees, extend opposite arm and leg while keeping balance."],
-   ["Calf raises","🦶","strength","2 sets · 8 reps","Easy","Hold a stable support and rise slowly onto your toes, then lower with control."]
+   {id:"bridge",name:"Glute bridge",meta:"BODY CONTROL · 2 SETS",duration:30,reps:8,description:"Lie comfortably with knees bent and feet supported. Lift hips gently, then lower with control.",cues:["Keep movement comfortable.","Move smoothly.","Breathe normally."],mistakes:"Do not force the movement or arch excessively."},
+   {id:"bird",name:"Bird dog",meta:"BALANCE · 2 SETS",duration:30,reps:6,description:"From hands and knees, reach opposite arm and leg while keeping your balance.",cues:["Move slowly.","Keep your back comfortable.","Use a stable surface."],mistakes:"Avoid twisting or rushing."},
+   {id:"calf",name:"Calf raises",meta:"COORDINATION · 2 SETS",duration:30,reps:8,description:"Hold a stable support and rise gently onto your toes, then lower slowly.",cues:["Use a comfortable range.","Keep balance.","Lower with control."],mistakes:"Do not bounce or force the range."}
   ]
  },
  mobility:{
-  eyebrow:"MOVEMENT & RECOVERY",
-  title:"Mobility & Reset",
-  description:"Move gently and recover without forcing a stretch.",
-  emoji:"🧘",
-  level:"Gentle",
-  duration:"7–10 min",
+  eyebrow:"MOVEMENT & RESET",title:"Mobility & recovery",
   items:[
-   ["Ankle mobility","🦶","stretch","1–2 min","Gentle","Move each ankle through a comfortable range without forcing it."],
-   ["Hip mobility","🧘","stretch","1–2 min","Gentle","Use slow, comfortable hip movements. Avoid bouncing or forcing range."],
-   ["Easy cool-down","🌿","float","5–8 min","Gentle","Walk easily, breathe calmly and use comfortable stretches after activity."]
+   {id:"ankle",name:"Ankle mobility",meta:"GENTLE MOVEMENT · 1 MIN",duration:30,reps:8,description:"Move each ankle through a comfortable range without forcing the movement.",cues:["Move gently.","Keep the movement smooth.","Switch sides."],mistakes:"Do not force a stretch."},
+   {id:"hip",name:"Hip mobility",meta:"GENTLE MOVEMENT · 1 MIN",duration:30,reps:8,description:"Use slow and comfortable hip movements. Keep the range easy.",cues:["Move slowly.","Stay relaxed.","Stop if uncomfortable."],mistakes:"Avoid bouncing or forcing range."},
+   {id:"cool",name:"Easy cool-down",meta:"RESET · 3 MIN",duration:60,reps:1,description:"Walk easily, breathe calmly and let your body settle after activity.",cues:["Keep it easy.","Breathe normally.","Drink water when needed."],mistakes:"Do not turn a cool-down into another hard session."}
+  ]
+ },
+ speed:{
+  eyebrow:"MOVEMENT & BALANCE",title:"Movement & agility",
+  items:[
+   {id:"prep",name:"Movement preparation",meta:"WARM-UP · 2 MIN",duration:30,reps:1,description:"Begin with comfortable walking and gentle movement before football practice.",cues:["Start easily.","Use a clear space.","Build up gradually."],mistakes:"Do not start with sudden intense movement."},
+   {id:"balance",name:"Balance practice",meta:"CONTROL · 2 MIN",duration:30,reps:6,description:"Practise standing balance on each side near a stable support.",cues:["Keep your eyes forward.","Stay near support.","Switch sides."],mistakes:"Do not close your eyes or use an unstable surface."},
+   {id:"change",name:"Controlled direction changes",meta:"FOOTWORK · 3 MIN",duration:30,reps:6,description:"Walk through a simple marker route, changing direction smoothly.",cues:["Use a clear area.","Keep steps controlled.","Take enough space."],mistakes:"Avoid sudden turns at an unsafe speed."}
   ]
  }
 };
 
-const storageKey="shanu-session-checklist-v1";
-let completed={};
-try { completed=JSON.parse(localStorage.getItem(storageKey)||"{}")||{}; }
-catch { completed={}; }
+const params=new URLSearchParams(location.search);
+let category=params.get("focus")||"football";
+if(category==="dribbling"||category==="passing")category="football";
+if(!library[category])category="football";
 
-let category="football";
-let currentIndex=0;
-let seconds=45;
+let selected=0;
+let mode="time";
+let timerValue=30;
 let timer=null;
-let running=false;
-let coach="animated";
+let restValue=30;
+let restTimer=null;
+let completed=JSON.parse(localStorage.getItem("shanu-session-v2")||"{}");
 
 const $=id=>document.getElementById(id);
 const cards=$("exerciseCards");
-const data=()=>exercises[category];
 
-function saveCompleted(){
- localStorage.setItem(storageKey,JSON.stringify(completed));
-}
-
+function currentItems(){return library[category].items}
 function updateProgress(){
- const total=Object.values(exercises).reduce((n,c)=>n+c.items.length,0);
- const count=Object.values(completed).filter(Boolean).length;
- $("progressText").textContent=`${count} / ${total} completed`;
- $("progressBar").style.width=`${count/total*100}%`;
+ const all=Object.values(library).flatMap(x=>x.items);
+ const count=all.filter(x=>completed[x.id]).length;
+ $("progressText").textContent=`${count} / ${all.length} completed`;
+ $("progressBar").style.width=`${count/all.length*100}%`;
 }
 
-function render(){
- const d=data();
- $("categoryEyebrow").textContent=d.eyebrow;
- $("categoryTitle").textContent=d.title;
- $("categoryDescription").textContent=d.description;
- $("heroEmoji").textContent=d.emoji;
- $("difficultyText").textContent=d.level;
- $("durationText").textContent=d.duration;
- $("exerciseCount").textContent=d.items.length;
- $("listCount").textContent=`0${d.items.length} MOVEMENTS`;
+function renderCards(){
+ const data=library[category];
+ $("categoryEyebrow").textContent=data.eyebrow;
+ $("categoryTitle").textContent=data.title;
+ $("exerciseCount").textContent=`${data.items.length} EXERCISES`;
  cards.replaceChildren();
-
- d.items.forEach((item,index)=>{
-  const [name,emoji,motion,duration,difficulty,description]=item;
-  const id=`${category}-${index}`;
-
+ data.items.forEach((item,index)=>{
   const article=document.createElement("article");
-  article.className="exercise-card";
-
-  const thumb=document.createElement("div");
-  thumb.className="exercise-thumb";
-  thumb.textContent=emoji;
-
-  const info=document.createElement("div");
-  info.className="exercise-info";
-
-  const title=document.createElement("h3");
-  title.textContent=`${String(index+1).padStart(2,"0")} · ${name}`;
-
-  const detail=document.createElement("p");
-  detail.textContent=description;
-
+  article.className="exercise-card"+(index===selected?" selected":"");
   const meta=document.createElement("div");
-  meta.className="exercise-meta";
-  meta.textContent=`${duration} · ${difficulty}`;
-
-  info.append(title,detail,meta);
-
-  const label=document.createElement("label");
-  label.className="exercise-check";
-
-  const input=document.createElement("input");
-  input.type="checkbox";
-  input.checked=!!completed[id];
-  input.addEventListener("change",()=>{
-   completed[id]=input.checked;
-   saveCompleted();
-   updateProgress();
-  });
-
-  const labelText=document.createElement("span");
-  labelText.textContent="Completed";
-  label.append(input,labelText);
-
-  article.append(thumb,info,label);
+  meta.className="exercise-meta";meta.textContent=item.meta;
+  const title=document.createElement("h3");title.textContent=`${String(index+1).padStart(2,"0")} · ${item.name}`;
+  const desc=document.createElement("p");desc.textContent=item.description;
+  const button=document.createElement("button");button.type="button";
+  button.textContent=completed[item.id]?"COMPLETED ✓":"OPEN EXERCISE →";
+  button.addEventListener("click",()=>selectExercise(index));
+  article.addEventListener("click",()=>selectExercise(index));
+  article.append(meta,title,desc,button);
   cards.append(article);
  });
  updateProgress();
 }
 
-document.querySelectorAll("[data-category]").forEach(button=>{
- button.addEventListener("click",()=>{
-  stopTimer();
-  category=button.dataset.category;
-  document.querySelectorAll("[data-category]").forEach(b=>
-   b.classList.toggle("active",b===button));
-  render();
- });
-});
-
-$("resetChecklist").addEventListener("click",()=>{
- if(!confirm("Reset all exercise checkmarks on this device?")) return;
- completed={};
- localStorage.removeItem(storageKey);
- render();
-});
-
-function openPlayer(){
- currentIndex=0;
- $("overviewScreen").hidden=true;
- $("playerScreen").hidden=false;
- showExercise();
- window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function showExercise(){
+function selectExercise(index){
+ selected=index;
+ renderCards();
+ const item=currentItems()[selected];
+ $("detailTitle").textContent=item.name;
+ $("detailInstructions").textContent=item.description;
+ $("targetValue").textContent=mode==="time"?`${item.duration} SEC`:`${item.reps} REPS`;
+ $("timerDisplay").textContent=mode==="time"?formatTime(item.duration):String(item.reps);
+ $("targetLabel").textContent=mode==="time"?"DURATION":"TARGET REPS";
+ $("timerStart").textContent="START";
  stopTimer();
- const item=data().items[currentIndex];
- $("playerEmoji").textContent=item[1];
- $("playerTitle").textContent=item[0];
- $("playerDescription").textContent=item[5];
- $("playerStep").textContent=`EXERCISE ${currentIndex+1} OF ${data().items.length}`;
- const percent=(currentIndex/data().items.length)*100;
- $("playerPercent").textContent=`${Math.round(percent)}%`;
- $("playerProgressBar").style.width=`${percent}%`;
- seconds=45;
- updateTimer();
- $("playPause").textContent="▶ Start";
- $("previousExercise").disabled=currentIndex===0;
- $("nextExercise").textContent=currentIndex===data().items.length-1?"Finish ✓":"Next →";
-}
-
-function updateTimer(){
- const mins=Math.floor(seconds/60);
- const secs=seconds%60;
- $("timerDisplay").textContent=
-  `${String(mins).padStart(2,"0")}:${String(secs).padStart(2,"0")}`;
-}
-
-function stopTimer(){
- if(timer) clearInterval(timer);
- timer=null;
- running=false;
-}
-
-function toggleTimer(){
- if(running){
-  stopTimer();
-  $("playPause").textContent="▶ Resume";
-  return;
+ timerValue=item.duration;
+ if(item.video){
+  const frame=document.createElement("iframe");
+  frame.src=item.video;
+  frame.title=item.name+" demonstration";
+  frame.allow="autoplay; encrypted-media; picture-in-picture";
+  frame.allowFullscreen=true;
+  $("videoStage").replaceChildren(frame);
+  const link=document.createElement("a");
+  link.href=item.source;link.target="_blank";link.rel="noopener";
+  link.textContent="VIEW ORIGINAL FOOTBALL AUSTRALIA VIDEO ↗";
+  $("videoCredit").replaceChildren(link);
+ }else{
+  const placeholder=document.createElement("div");
+  placeholder.className="sl-video-placeholder";
+  const icon=document.createElement("span");icon.textContent="▶";
+  const strong=document.createElement("strong");strong.textContent="COACHING NOTES";
+  const p=document.createElement("p");p.textContent="This exercise currently uses written guidance. A verified demonstration video can be added when a suitable source is available.";
+  placeholder.append(icon,strong,p);
+  $("videoStage").replaceChildren(placeholder);
+  $("videoCredit").textContent="No third-party demonstration video is loaded for this exercise.";
  }
- running=true;
- $("playPause").textContent="Ⅱ Pause";
+ $("detailCues").replaceChildren();
+ item.cues.forEach(cue=>{const li=document.createElement("li");li.textContent=cue;$("detailCues").append(li)});
+ $("detailMistakes").textContent=item.mistakes;
+ $("completeExercise").textContent=completed[item.id]?"COMPLETED ✓":"MARK COMPLETE ✓";
+ if(window.innerWidth<820)$("exercisePlayer").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function formatTime(seconds){return `${String(Math.floor(seconds/60)).padStart(2,"0")}:${String(seconds%60).padStart(2,"0")}`}
+function stopTimer(){if(timer){clearInterval(timer);timer=null}}
+function showTimer(){ $("timerDisplay").textContent=mode==="time"?formatTime(timerValue):String(timerValue)}
+function startTimer(){
+ if(timer){stopTimer();$("timerStart").textContent="RESUME";return}
+ if(mode==="reps"){ $("timerDisplay").textContent="COMPLETE YOUR SET";$("timerStart").textContent="DONE";return}
+ $("timerStart").textContent="PAUSE";
  timer=setInterval(()=>{
-  if(seconds>0){
-   seconds--;
-   updateTimer();
-  }else{
-   stopTimer();
-   $("playPause").textContent="↻ Restart";
-  }
+  timerValue=Math.max(0,timerValue-1);showTimer();
+  if(timerValue===0){stopTimer();$("timerStart").textContent="FINISHED"}
  },1000);
 }
 
-$("startWorkout").addEventListener("click",openPlayer);
-$("playPause").addEventListener("click",()=>{
- if(seconds===0){
-  seconds=45;
-  updateTimer();
- }
- toggleTimer();
+$("timerStart").addEventListener("click",()=>{
+ if(mode==="reps"){ $("timerDisplay").textContent="SET COMPLETE";$("timerStart").textContent="DONE";return}
+ startTimer();
 });
-
+$("timerReset").addEventListener("click",()=>{
+ stopTimer();timerValue=currentItems()[selected].duration;showTimer();$("timerStart").textContent="START";
+});
+$("timeMode").addEventListener("click",()=>{
+ mode="time";$("timeMode").classList.add("active");$("repMode").classList.remove("active");selectExercise(selected);
+});
+$("repMode").addEventListener("click",()=>{
+ mode="reps";$("repMode").classList.add("active");$("timeMode").classList.remove("active");selectExercise(selected);
+});
+$("completeExercise").addEventListener("click",()=>{
+ const item=currentItems()[selected];
+ completed[item.id]=!completed[item.id];
+ localStorage.setItem("shanu-session-v2",JSON.stringify(completed));
+ $("completeExercise").textContent=completed[item.id]?"COMPLETED ✓":"MARK COMPLETE ✓";
+ renderCards();
+});
 $("nextExercise").addEventListener("click",()=>{
- stopTimer();
- if(currentIndex===data().items.length-1){
-  data().items.forEach((item,index)=>{
-   completed[`${category}-${index}`]=true;
-  });
-  saveCompleted();
-  updateProgress();
-  $("playerScreen").hidden=true;
-  $("overviewScreen").hidden=false;
-  render();
-  window.scrollTo({top:0,behavior:"smooth"});
-  return;
- }
- currentIndex++;
- showExercise();
+ selectExercise((selected+1)%currentItems().length);
 });
-
-$("previousExercise").addEventListener("click",()=>{
- if(currentIndex>0){
-  currentIndex--;
-  showExercise();
- }
+$("resetChecklist").addEventListener("click",()=>{
+ if(!confirm("Reset all exercise checkmarks saved on this device?"))return;
+ completed={};localStorage.removeItem("shanu-session-v2");renderCards();selectExercise(selected);
 });
-
-$("backToOverview").addEventListener("click",()=>{
- stopTimer();
- $("playerScreen").hidden=true;
- $("overviewScreen").hidden=false;
- window.scrollTo({top:0,behavior:"smooth"});
-});
-
-$("openSettings").addEventListener("click",()=>{
- $("settingsModal").hidden=false;
-});
-
-$("closeSettings").addEventListener("click",()=>{
- $("settingsModal").hidden=true;
-});
-
-$("settingsModal").addEventListener("click",e=>{
- if(e.target===$("settingsModal")) $("settingsModal").hidden=true;
-});
-
-document.querySelectorAll("[data-coach]").forEach(button=>{
+document.querySelectorAll("[data-category]").forEach(button=>{
  button.addEventListener("click",()=>{
-  coach=button.dataset.coach;
-  document.querySelectorAll("[data-coach]").forEach(b=>
-   b.classList.toggle("selected",b===button));
+  category=button.dataset.category;selected=0;stopTimer();
+  document.querySelectorAll("[data-category]").forEach(b=>b.classList.toggle("active",b===button));
+  $("sessionLabel").textContent=library[category].title;
+  renderCards();selectExercise(0);
  });
 });
 
-$("saveSettings").addEventListener("click",()=>{
- localStorage.setItem("shanu-workout-coach",coach);
- $("settingsModal").hidden=true;
+function showRest(){$("restDisplay").textContent=formatTime(restValue)}
+function stopRest(){if(restTimer){clearInterval(restTimer);restTimer=null}}
+$("restStart").addEventListener("click",()=>{
+ if(restTimer){stopRest();$("restStart").textContent="RESUME";return}
+ $("restStart").textContent="PAUSE";
+ restTimer=setInterval(()=>{
+  restValue=Math.max(0,restValue-1);showRest();
+  if(restValue===0){stopRest();$("restStart").textContent="REST COMPLETE"}
+ },1000);
 });
+$("restPlus").addEventListener("click",()=>{restValue+=15;showRest()});
+$("restReset").addEventListener("click",()=>{stopRest();restValue=30;showRest();$("restStart").textContent="START REST"});
 
-try {
- const savedCoach=localStorage.getItem("shanu-workout-coach");
- if(savedCoach==="real"||savedCoach==="animated") coach=savedCoach;
- document.querySelectorAll("[data-coach]").forEach(b=>
-  b.classList.toggle("selected",b.dataset.coach===coach));
-} catch {}
-
-render();
+document.querySelectorAll("[data-category]").forEach(b=>b.classList.toggle("active",b.dataset.category===category));
+$("sessionLabel").textContent=library[category].title;
+renderCards();selectExercise(0);
 </script>
