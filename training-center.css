@@ -34,3 +34,133 @@
 .tc-bottom-links a{color:#c5f36b;text-decoration:none;font-size:12px;font-weight:900}
 @media(max-width:720px){.tc-wrap{gap:38px}.tc-builder{grid-template-columns:1fr}.tc-modules{grid-template-columns:repeat(2,minmax(0,1fr))}.tc-hero h1{letter-spacing:-2px}.tc-stats div{padding:13px}.tc-stats strong{font-size:25px}.tc-stats span{font-size:8px}}
 @media(max-width:430px){.tc-modules{grid-template-columns:1fr}.tc-module p{min-height:0}}
+
+/* EXERCISE ANIMATION LIBRARY */
+.tc-animation-section {
+  display: grid;
+  gap: 20px;
+}
+
+.tc-animation-toolbar {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 12px;
+}
+
+.tc-animation-toolbar input,
+.tc-animation-toolbar select {
+  width: 100%;
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid #355744;
+  border-radius: 12px;
+  background: #07140d;
+  color: #fff;
+  font: inherit;
+}
+
+.tc-animation-grid {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 15px;
+}
+
+.tc-animation-card {
+  min-width: 0;
+  overflow: hidden;
+  padding: 15px;
+  border: 1px solid #244333;
+  border-radius: 18px;
+  background: linear-gradient(145deg,#10291c,#07140d);
+}
+
+.tc-animation-card img {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.tc-animation-card h3 {
+  margin: 15px 0 8px;
+  color: #f4fff5;
+}
+
+.tc-animation-card p,
+.tc-animation-card li {
+  color: #a5b5aa;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.tc-animation-card summary {
+  padding: 12px 0;
+  color: #c5f36b;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.tc-api-message {
+  color: #a5b5aa;
+  line-height: 1.6;
+}
+
+.tc-plan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.tc-plan-actions button {
+  font: inherit;
+}
+
+.tc-saved-plans {
+  display: grid;
+  gap: 12px;
+}
+
+.tc-saved-card {
+  padding: 18px;
+  border: 1px solid #244333;
+  border-radius: 15px;
+  background: #0b1c13;
+}
+
+.tc-saved-card strong {
+  color: #c5f36b;
+}
+
+.tc-saved-card p {
+  color: #a5b5aa;
+  line-height: 1.6;
+}
+
+.tc-saved-card button {
+  font: inherit;
+  margin-top: 8px;
+}
+
+@media(max-width:720px) {
+  .tc-animation-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+
+@media(max-width:480px) {
+  .tc-animation-grid,
+  .tc-animation-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .tc-animation-card img {
+    height: 210px;
+  }
+
+  .tc-plan-actions > * {
+    width: 100%;
+  }
+}

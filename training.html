@@ -80,6 +80,54 @@
 </div>
 </section>
 
+
+<section class="tc-section tc-animation-section" id="exercise-animations">
+  <div class="tc-heading">
+    <p class="eyebrow">MOVEMENT DEMONSTRATIONS</p>
+    <h2>Watch the movement.</h2>
+    <p>Animated exercise demonstrations with instructions.</p>
+  </div>
+
+  <div class="tc-animation-toolbar">
+    <input id="tcAnimationSearch" type="search"
+      placeholder="Search exercise, muscle or movement..."
+      aria-label="Search exercise demonstrations">
+
+    <select id="tcAnimationCategory" aria-label="Filter demonstrations">
+      <option value="all">All demonstrations</option>
+      <option value="chest">Chest</option>
+      <option value="back">Back</option>
+      <option value="legs">Legs</option>
+      <option value="waist">Core</option>
+      <option value="cardio">Cardio</option>
+    </select>
+  </div>
+
+  <p id="tcApiStatus" class="tc-api-message" aria-live="polite">
+    Loading exercise demonstrations...
+  </p>
+
+  <button id="tcApiRetry" class="tc-secondary" type="button">
+    RELOAD DEMONSTRATIONS
+  </button>
+
+  <div id="tcAnimationResults" class="tc-animation-grid"></div>
+
+  <p class="tc-api-message">
+    Exercise demonstrations: ExerciseDB V1 by AscendAPI.
+    This free service has usage limits and is intended for non-commercial projects.
+  </p>
+</section>
+
+<section class="tc-section">
+  <div class="tc-heading">
+    <p class="eyebrow">YOUR PERSONAL WORKOUTS</p>
+    <h2>Saved training plans</h2>
+    <p>Your plans are stored locally on this device.</p>
+  </div>
+  <div id="tcSavedPlans" class="tc-saved-plans"></div>
+</section>
+
 <section class="tc-section">
 <div class="tc-heading">
 <p class="eyebrow">TRAINING MODULES</p>
