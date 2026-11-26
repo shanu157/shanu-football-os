@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07130f">
+  <meta name="description" content="Shanu Football OS — train hard, play smart, recover well.">
+  <title>Shanu Football OS</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">S</span><span>SHANU <b>FOOTBALL OS</b></span></a>
+    <div class="top-actions"><span class="live-dot"></span><span id="todayLabel">DAILY TRAINING SYSTEM</span><button class="icon-btn" id="themeBtn" aria-label="Toggle theme">◐</button></div>
+  </header>
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">THE PLAYER DEVELOPMENT PROJECT</p>
+        <h1>TRAIN HARD.<br><em>PLAY SMART.</em></h1>
+        <p class="sub">Build the habits of a complete footballer: speed, skill, strength, mobility, focus and recovery.</p>
+        <div class="hero-tags"><span>⚽ FOOTBALL FIRST</span><span>🧠 SMART MINDSET</span><span>♻ RECOVERY COUNTS</span></div>
+      </div>
+      <div class="ball-stage"><div class="orbital"></div><div id="ball3d" aria-label="3D rotating football"></div><div class="stage-caption">FOCUS • CONSISTENCY • CONTROL</div></div>
+    </section>
+
+    <section class="daily card">
+      <div class="section-head"><div><p class="eyebrow">YOUR DAILY CHECK-IN</p><h2>How ready are you today?</h2></div><span class="date-pill" id="datePill"></span></div>
+      <div class="readiness-grid">
+        <label class="field">Energy
+          <select id="energy"><option value="fresh">Fresh / energetic</option><option value="medium">A little tired</option><option value="low">Very tired</option></select>
+        </label>
+        <label class="field">Yesterday's load
+          <select id="load"><option value="light">Rest / light activity</option><option value="normal">Normal football practice</option><option value="hard">Hard training / match</option></select>
+        </label>
+        <label class="field">Today
+          <select id="todayLoad"><option value="none">No football session planned</option><option value="practice">Football practice</option><option value="match">Match day</option></select>
+        </label>
+        <label class="field">Body check
+          <select id="body"><option value="good">No unusual soreness</option><option value="sore">A little sore / stiff</option><option value="pain">Pain or feeling unwell</option></select>
+        </label>
+      </div>
+      <button class="primary" id="recommendBtn">CHOOSE TODAY'S PLAN <span>→</span></button>
+      <div class="recommendation" id="recommendation" aria-live="polite"><span class="rec-icon">◎</span><div><b>Your plan appears here</b><p>Answer the check-in, then choose your plan.</p></div></div>
+    </section>
+
+    
+<section class="card player-profile" id="playerProfile">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">PLAYER IDENTITY</p>
+      <h2>Player Profile</h2>
+    </div>
+    <span class="tag">MY JOURNEY</span>
+  </div>
+  <form id="profileForm">
+    <div class="readiness-grid">
+      <label class="field">Player name
+        <input id="playerName" type="text" maxlength="40" placeholder="Enter your name">
+      </label>
+      <label class="field">Position
+        <select id="playerPosition">
+          <option value="Winger">Winger</option>
+          <option value="Striker">Striker</option>
+          <option value="Midfielder">Midfielder</option>
+          <option value="Defender">Defender</option>
+          <option value="Goalkeeper">Goalkeeper</option>
+        </select>
+      </label>
+      <label class="field">Preferred foot
+        <select id="playerFoot">
+          <option value="Both feet">Both feet</option>
+          <option value="Right foot">Right foot</option>
+          <option value="Left foot">Left foot</option>
+        </select>
+      </label>
+      <label class="field">Main ambition
+        <input id="playerAmbition" value="Professional footballer" maxlength="60">
+      </label>
+    </div>
+    <button class="primary small" type="submit">SAVE PLAYER PROFILE</button>
+    <p id="profileStatus" class="status" aria-live="polite">Your profile has not been saved yet.</p>
+  </form>
+  <div class="mantra">
+    <span>YOUR POSITION</span>
+    <strong id="profileSummary">Winger • Both feet</strong>
+  </div>
+</section>
+
+<section class="sections">
+      <div class="section-head"><div><p class="eyebrow">THREE TRAINING MODES</p><h2>Choose with intelligence.</h2></div><p class="muted">Your body sets the intensity.</p></div>
+      <div class="mode-grid">
+        <article class="mode-card growth">
+          <div class="mode-top"><span class="mode-number">01</span><span class="mode-symbol">☀</span></div>
+          <p class="eyebrow">FOUNDATION • EVERY DAY</p><h3>Growth &<br>recovery</h3>
+          <p class="mode-desc">Support healthy development with sleep, food, hydration and recovery. No workout can guarantee extra height or force HGH release.</p>
+          <ul><li>8–10 hours sleep target for teens</li><li>Balanced meals and enough fuel</li><li>Water through the day</li><li>Relaxation and consistent routine</li></ul>
+          <button class="outline mode-open" data-mode="growth">VIEW DAILY HABITS ↗</button>
+        </article>
+        <article class="mode-card performance">
+          <div class="mode-top"><span class="mode-number">02</span><span class="mode-symbol">⚡</span></div>
+          <p class="eyebrow">WHEN FRESH & RECOVERED</p><h3>Football<br>performance</h3>
+          <p class="mode-desc">Develop acceleration, stamina, strength, core control and football skill with quality sessions and proper coaching.</p>
+          <ul><li>Warm-up + movement preparation</li><li>Acceleration and sprint technique</li><li>Ball mastery and passing</li><li>Strength, balance and core</li><li>Cool-down and refuel</li></ul>
+          <button class="outline mode-open" data-mode="performance">VIEW TRAINING MENU ↗</button>
+        </article>
+        <article class="mode-card mobility">
+          <div class="mode-top"><span class="mode-number">03</span><span class="mode-symbol">〰</span></div>
+          <p class="eyebrow">TIRED / STIFF / RECOVERY DAY</p><h3>Mobility &<br>reset</h3>
+          <p class="mode-desc">Gentle movement to stay comfortable and mobile. Keep it easy; stretching should never hurt.</p>
+          <ul><li>Easy walk and relaxed breathing</li><li>Ankle and hip mobility</li><li>Gentle hamstring movement</li><li>Shoulder and upper-back mobility</li><li>Rest if exhausted or unwell</li></ul>
+          <button class="outline mode-open" data-mode="mobility">VIEW MOBILITY MENU ↗</button>
+        </article>
+      </div>
+    </section>
+
+    
+<section class="card cloud-training" id="cloudTraining">
+  <p class="eyebrow">YOUR CLOUD ACCOUNT</p>
+  <h2>Training Log</h2>
+  <p id="cloudStatus" role="status">Connect your Google account to sync your training.</p>
+  <button type="button" id="googleLogin">Continue with Google</button>
+  <button type="button" id="googleLogout" hidden>Sign out</button>
+  <p id="cloudAccount"></p>
+
+  <div id="cloudLogArea" hidden>
+    <h3>Record a training session</h3>
+    <form id="cloudLogForm">
+      <label for="logDate">Training date</label>
+      <input id="logDate" type="date" required>
+
+      <label for="logActivity">Activity</label>
+      <select id="logActivity" required>
+        <option value="Football skills">Football skills</option>
+        <option value="Match">Match</option>
+        <option value="Strength">Strength</option>
+        <option value="Speed and agility">Speed and agility</option>
+        <option value="Mobility">Mobility</option>
+        <option value="Recovery">Recovery</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="logMinutes">Duration (minutes)</label>
+      <input id="logMinutes" type="number" min="1" max="300" required>
+
+      <label for="logNotes">Notes (optional)</label>
+      <textarea id="logNotes" rows="3" maxlength="500"
+        placeholder="What did you practise? How did it feel?"></textarea>
+
+      <button type="submit" id="saveCloudLog">Save training log</button>
+    </form>
+
+    <h3>Your training history</h3>
+    <div id="cloudLogList" aria-live="polite">Loading logs...</div>
+  </div>
+</section>
+
+
+    <section class="card session-library-entry" id="sessionLibraryLink">
+      <p class="eyebrow">EXPLORE YOUR TRAINING</p>
+      <h2>Session Library</h2>
+      <p class="muted">Explore animated exercise guides and track your practice.</p>
+      <a class="primary session-open" href="session-library.html">OPEN SESSION LIBRARY →</a>
+    </section>
+    <section class="detail card" id="detailPanel">
+      <div class="section-head"><div><p class="eyebrow">SESSION LIBRARY</p><h2 id="detailTitle">Your exercise menu</h2></div><span class="tag" id="detailTag">SELECT A MODE</span></div>
+      <div id="exerciseList" class="exercise-list"><p class="muted">Select one of the three modes above to see its routine, coaching cues and safe modifications.</p></div>
+    </section>
+
+    <section class="two-col">
+      <div class="card goals">
+        <p class="eyebrow">SMALL WINS, EVERY DAY</p><h2>Daily goals</h2>
+        <p class="muted">Tick what you complete. Aim for consistency, not perfection.</p>
+        <div id="goalList" class="goal-list"></div>
+        <div class="goal-footer"><span id="goalCount">0 / 6 complete</span><div class="progress"><span id="progressBar"></span></div></div>
+        <button class="text-btn" id="resetGoals">Reset today's goals ↻</button>
+      </div>
+      <div class="card reminder">
+        <p class="eyebrow">BUILD YOUR ROUTINE</p><h2>Gentle reminders</h2>
+        <p class="muted">Set reminders for hydration, training check-in and bedtime. Browser notifications work when this site is open or installed, depending on device/browser settings.</p>
+        <label class="field">Reminder time <input type="time" id="reminderTime" value="20:30"></label>
+        <label class="checkline"><input type="checkbox" id="reminderOn"> Enable daily reminder</label>
+        <button class="primary small" id="saveReminder">SAVE REMINDER</button>
+        <p id="reminderStatus" class="status" aria-live="polite">No reminder scheduled.</p>
+        <button class="outline" id="notifyPermission">ALLOW NOTIFICATIONS</button>
+      </div>
+    </section>
+
+    <section class="mindset card">
+      <div><p class="eyebrow">THE MINDSET</p><h2>Calm mind. Relentless habits.</h2><p>Take inspiration from elite players: prepare with discipline, respect your coaches and teammates, learn from mistakes, and make smart decisions under pressure.</p></div>
+      <div class="mantra"><span>01</span> Train with purpose.<span>02</span> Play with awareness.<span>03</span> Recover without guilt.</div>
+    </section>
+    <footer><span>SHANU FOOTBALL OS</span><span>Train hard • Play smart • Recover well</span><span class="muted">Personal training companion — not medical advice.</span></footer>
+  </main>
+  <dialog id="infoDialog"><div class="dialog-inner"><button class="close" id="closeDialog">×</button><p class="eyebrow">PLAYER NOTE</p><h2 id="dialogTitle">Remember</h2><p id="dialogText"></p></div></dialog>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
